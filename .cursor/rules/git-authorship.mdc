@@ -7,7 +7,8 @@ alwaysApply: true
 
 - **Remote**: `https://github.com/GAjay/protflio.git`
 - **Author & committer** for every commit: **GAjay** `<ajay.maheshwari095@gmail.com>`
-- Do **not** add `Co-authored-by`, `Signed-off-by`, or contributor trailers for Cursor, Copilot, or other agents.
+- Do **not** add `Co-authored-by`, `Signed-off-by`, or contributor trailers for Cursor, Copilot, or other agents. Cursor may inject `Co-authored-by: Cursor <cursoragent@cursor.com>` on commit — use repo hooks to strip it (see below).
+- One-time per clone: `git config core.hooksPath .githooks` (local only; do not set global git config).
 - When creating commits for this repo, use:
   `git commit --author="GAjay <ajay.maheshwari095@gmail.com>"` with `GIT_COMMITTER_NAME` / `GIT_COMMITTER_EMAIL` set to the same values (do not change global `git config`).
 - Do not commit `.env`, tokens, or credentials.
