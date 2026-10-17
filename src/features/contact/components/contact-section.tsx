@@ -4,7 +4,6 @@ import Image from "next/image";
 import {
   PortfolioH2,
   PortfolioLead,
-  PortfolioMuted,
   PortfolioSmall,
 } from "@/shared/components/portfolio-typography";
 import { ContactMailForm } from "./contact-mail-form";
@@ -119,11 +118,11 @@ export function ContactSection() {
 
       <footer className="site-footer">
         <div className="site-footer__inner">
-          <PortfolioMuted className="site-footer__line">
+          <p className="site-footer__line">
             <span>© {contact.copyrightYear} {siteConfig.name}</span>
             <span className="site-footer__dot" aria-hidden>·</span>
             <span>{siteConfig.role}</span>
-          </PortfolioMuted>
+          </p>
           <SiteFooterNav />
         </div>
       </footer>

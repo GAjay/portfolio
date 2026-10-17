@@ -112,24 +112,44 @@
   border: 0;
 }
 
+/* AsriUI Input — single border on control wrapper, not inner input */
+.portfolio-page .contact-form [class*="control"] {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+  box-shadow: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.portfolio-page .contact-form [class*="control"]:focus-within {
+  outline: 3px solid color-mix(in srgb, var(--ink) 35%, transparent);
+  outline-offset: 1px;
+}
+
 .portfolio-page .contact-form input,
 .portfolio-page .contact-form textarea,
 .portfolio-page .contact-form [class*="field"] input,
 .portfolio-page .contact-form [class*="field"] textarea {
   font: inherit;
   padding: 12px 14px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--card);
+  border: none;
+  border-radius: 0;
+  background: transparent;
   color: var(--ink);
   width: 100%;
   box-sizing: border-box;
+  box-shadow: none;
+  outline: none;
 }
 
 .portfolio-page .contact-form textarea,
 .portfolio-page .contact-form [class*="field"] textarea {
   min-height: 120px;
   resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
 }
 
 .portfolio-page .contact-form [class*="actions"] {

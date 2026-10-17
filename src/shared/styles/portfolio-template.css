@@ -70,6 +70,11 @@ html[data-theme="dark"] {
   border-radius: 10px;
 }
 
+.portfolio-page .contact-form input:focus-visible,
+.portfolio-page .contact-form textarea:focus-visible {
+  outline: none;
+}
+
 .wrap {
   max-width: 1120px;
   margin: 0 auto;
@@ -1733,13 +1738,9 @@ html[data-theme="dark"] .company-logo--mono {
   min-width: 0;
 }
 
+/* Field chrome — see portfolio-asriui.css (AsriUI Input control wrapper) */
 .contact-form input,
 .contact-form textarea {
-  font: inherit;
-  padding: 12px 14px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--card);
   color: var(--ink);
   width: 100%;
 }
@@ -1800,6 +1801,23 @@ html[data-theme="dark"] .company-logo--mono {
 .contact-details a {
   color: var(--ink);
   word-break: break-word;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  font-weight: 500;
+}
+
+.contact-details a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contact-details a:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .site-footer {
@@ -1828,6 +1846,16 @@ html[data-theme="dark"] .company-logo--mono {
   font-size: 13px;
   color: var(--muted);
   text-align: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.site-footer__line span {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
 }
 
 .site-footer__line span:first-child {
