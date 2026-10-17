@@ -47,6 +47,7 @@ jobs:
           GITHUB_PAGES: "1"
           NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
           NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.site_url }}
+          INSTAGRAM_SKIP_CRAWL: "1"
         run: |
           node scripts/prepare-github-pages-export.mjs
           npm run build

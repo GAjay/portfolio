@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 import { basePath } from "@/shared/config/base-path";
 import { siteConfig } from "@/shared/config/site";
 
+/** Required for `output: "export"` (GitHub Pages). */
+export const dynamic = "force-static";
+
 export default function manifest(): MetadataRoute.Manifest {
   const start = basePath ? `${basePath}/` : "/";
 

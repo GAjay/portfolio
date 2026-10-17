@@ -83,16 +83,28 @@ async function fetchJson(url, { accept } = {}) {
   return res.json();
 }
 
-async function fetchText(url, { accept } = {}) {
-  const res = await fetch(url, {
-    headers: {
-      Accept: accept ?? "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-      "User-Agent":
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-    },
-  });
-  if (!res.ok) throw new Error(`${url} ${res.status}`);
-  return res.text();
+async function fetchText(url, { accept, timeoutMs = 20_000 } = {}) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const res = await fetch(url, {
+      signal: controller.signal,
+      headers: {
+        Accept: accept ?? "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "User-Agent":
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      },
+    });
+    if (!res.ok) throw new Error(`${url} ${res.status}`);
+    return res.text();
+  } catch (err) {
+    if (err?.name === "AbortError") {
+      throw new Error(`${url} timed out after ${timeoutMs}ms`);
+    }
+    throw err;
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 function parseHumanCount(raw) {
@@ -630,11 +642,23 @@ async function main() {
     /* first sync */
   }
 
-  const mediumXml = await fetchText("https://theplainscript.medium.com/feed", {
-    accept: "application/rss+xml, application/xml, text/xml, */*",
-  });
-  const mediumFeedArticleCount = countMediumFeedArticles(mediumXml);
-  const mediumItems = parseMediumItems(mediumXml, 6);
+  let mediumFeedArticleCount = 0;
+  let mediumItems = [];
+  try {
+    const mediumXml = await fetchText("https://theplainscript.medium.com/feed", {
+      accept: "application/rss+xml, application/xml, text/xml, */*",
+    });
+    mediumFeedArticleCount = countMediumFeedArticles(mediumXml);
+    mediumItems = parseMediumItems(mediumXml, 6);
+  } catch (err) {
+    console.warn("Medium feed sync skipped:", err.message);
+    try {
+      mediumItems = readJson("src/features/content/data/medium.generated.json");
+    } catch {
+      mediumItems = [];
+    }
+    mediumFeedArticleCount = previousContent?.metrics?.mediumArticleCount ?? 0;
+  }
 
   const youtube = await fetchYouTubeChannel(contentSeed.youtube.url).catch((err) => {
     console.warn("YouTube metrics:", err.message);
@@ -753,8 +777,17 @@ async function main() {
     audienceReachLabel: formatReachLabel(audienceReach),
   };
 
-  const topmateHtml = await fetchText(TOPMATE_PROFILE_URL);
-  const topmateReviews = parseTopmateReviews(topmateHtml);
+  let topmateReviews = [];
+  if (process.env.SKIP_TOPMATE_SYNC === "1") {
+    console.warn("Topmate sync skipped (SKIP_TOPMATE_SYNC=1)");
+  } else {
+    try {
+      const topmateHtml = await fetchText(TOPMATE_PROFILE_URL);
+      topmateReviews = parseTopmateReviews(topmateHtml);
+    } catch (err) {
+      console.warn("Topmate sync skipped:", err.message);
+    }
+  }
 
   const journeySeed = readJson("src/features/journey/data/journey.seed.json");
   const recommendationsSeed = readJson(
