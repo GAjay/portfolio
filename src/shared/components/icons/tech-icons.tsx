@@ -1,3 +1,5 @@
+import { assetPath } from "@/shared/config/base-path";
+
 type TechIconProps = {
   slug: string;
 };
@@ -5,7 +7,7 @@ type TechIconProps = {
 export function TechIcon({ slug }: TechIconProps) {
   return (
     <img
-      src={`/assets/tech/${slug}.svg`}
+      src={assetPath(`/assets/tech/${slug}.svg`)}
       alt=""
       className="tech-svg"
       width={20}

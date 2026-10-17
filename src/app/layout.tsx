@@ -4,6 +4,7 @@ import { Providers } from "@/shared/components/providers";
 import { ScrollToTop } from "@/shared/components/scroll-to-top";
 import { SkipLink } from "@/shared/components/skip-link";
 import { SiteJsonLd } from "@/shared/components/site-json-ld";
+import { PortfolioAssetStyles } from "@/shared/components/portfolio-asset-styles";
 import { PortfolioIconSprite } from "@/shared/components/portfolio-icons";
 import { COLOR_SCHEME_INIT_SCRIPT } from "@/shared/lib/color-scheme-init-script";
 import { buildRootMetadata } from "@/shared/lib/site-metadata";
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${interTight.variable} ${caveat.variable} h-full scroll-smooth`}
     >
       <head>
+        <PortfolioAssetStyles />
         <script dangerouslySetInnerHTML={{ __html: COLOR_SCHEME_INIT_SCRIPT }} />
         <link rel="preconnect" href="https://avatars.githubusercontent.com" crossOrigin="anonymous" />
       </head>

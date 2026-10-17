@@ -1,3 +1,5 @@
+import { assetPath } from "@/shared/config/base-path";
+
 export type Company = {
   id: string;
   name: string;
@@ -18,7 +20,7 @@ export const companyCatalog: Record<string, Company> = {
     id: "publicis",
     name: "Publicis Sapient",
     short: "Publicis Sapient",
-    logo: "/assets/companies/publicis.svg",
+    logo: assetPath("/assets/companies/publicis.svg"),
     logoSource:
       "https://www.publicissapient.com/content/dam/ps-redesign/us/en/global/footer/ps-logo-footer.svg",
     website: "https://www.publicissapient.com/",
@@ -28,7 +30,7 @@ export const companyCatalog: Record<string, Company> = {
     id: "lloyds",
     name: "Lloyds Bank",
     short: "Lloyds",
-    logo: "/assets/companies/lloyds.svg",
+    logo: assetPath("/assets/companies/lloyds.svg"),
     logoSource: "https://www.lloydsbank.com/",
     website: "https://www.lloydsbank.com/",
     sector: "Banking",
@@ -37,7 +39,7 @@ export const companyCatalog: Record<string, Company> = {
     id: "vymo",
     name: "Vymo",
     short: "Vymo",
-    logo: "/assets/companies/vymo.png",
+    logo: assetPath("/assets/companies/vymo.png"),
     logoSource: "https://vymo.com/press/wp-content/uploads/2021/08/main-logo.png",
     website: "https://vymo.com/",
     sector: "Sales engagement",
@@ -46,7 +48,7 @@ export const companyCatalog: Record<string, Company> = {
     id: "magento",
     name: "Magento",
     short: "Magento",
-    logo: "/assets/companies/magento.svg",
+    logo: assetPath("/assets/companies/magento.svg"),
     logoSource:
       "https://business.adobe.com/products/magento/magento-commerce.html",
     website: "https://business.adobe.com/products/magento/magento-commerce.html",
@@ -56,7 +58,7 @@ export const companyCatalog: Record<string, Company> = {
     id: "ranosys",
     name: "Ranosys",
     short: "Ranosys",
-    logo: "/assets/companies/ranosys.svg",
+    logo: assetPath("/assets/companies/ranosys.svg"),
     logoSource:
       "https://www.ranosys.com/wp-content/uploads/2026/06/Ranosys-Black_1.svg",
     website: "https://www.ranosys.com/",
@@ -67,7 +69,7 @@ export const companyCatalog: Record<string, Company> = {
     id: "wordpress",
     name: "WordPress",
     short: "WordPress",
-    logo: "/assets/companies/wordpress.svg",
+    logo: assetPath("/assets/companies/wordpress.svg"),
     logoSource: "https://wordpress.org/",
     website: "https://wordpress.org/",
     sector: "CMS",
@@ -76,7 +78,7 @@ export const companyCatalog: Record<string, Company> = {
     id: "tata",
     name: "Tata",
     short: "Tata",
-    logo: "/assets/companies/tata.svg",
+    logo: assetPath("/assets/companies/tata.svg"),
     logoSource:
       "https://www.tata.com/etc.clientlibs/tata/clientlibs/assets/resources/img/pages/nav/Tata_Logo2.svg",
     website: "https://www.tata.com/",
@@ -86,7 +88,7 @@ export const companyCatalog: Record<string, Company> = {
     id: "wipro",
     name: "Wipro",
     short: "Wipro",
-    logo: "/assets/companies/wipro.svg",
+    logo: assetPath("/assets/companies/wipro.svg"),
     logoSource: "https://www.wipro.com/content/dam/wipro/social-icons/wipro_new_logo.svg",
     website: "https://www.wipro.com/",
     sector: "IT services",
@@ -95,7 +97,7 @@ export const companyCatalog: Record<string, Company> = {
     id: "apollo",
     name: "Apollo Global Management",
     short: "Apollo",
-    logo: "/assets/companies/apollo.svg",
+    logo: assetPath("/assets/companies/apollo.svg"),
     logoSource:
       "https://d1io3yog0oux5.cloudfront.net/_89a8fecd520bcfa7f96361eee84d6d4f/apollo/files/theme/images/logo-sm.svg",
     website: "https://www.apollo.com/",
@@ -105,7 +107,7 @@ export const companyCatalog: Record<string, Company> = {
     id: "capbridge",
     name: "CapBridge",
     short: "CapBridge",
-    logo: "/assets/companies/capbridge.png",
+    logo: assetPath("/assets/companies/capbridge.png"),
     logoSource: "https://www.capbridge.sg/",
     website: "https://www.capbridge.sg/",
     sector: "Investment platform",
@@ -114,7 +116,7 @@ export const companyCatalog: Record<string, Company> = {
     id: "razertech",
     name: "Razertech",
     short: "Razertech",
-    logo: "/assets/companies/razertech.svg",
+    logo: assetPath("/assets/companies/razertech.svg"),
     logoSource: "https://www.razrcorp.com/",
     website: "https://www.razrcorp.com/",
     sector: "Product studio",

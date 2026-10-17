@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { basePath } from "@/shared/config/base-path";
+import { assetPath, basePath } from "@/shared/config/base-path";
 import { siteConfig } from "@/shared/config/site";
 
 /** Required for `output: "export"` (GitHub Pages). */
@@ -19,19 +19,19 @@ export default function manifest(): MetadataRoute.Manifest {
     orientation: "portrait-primary",
     icons: [
       {
-        src: "/icons/icon-192.png",
+        src: assetPath("/icons/icon-192.png"),
         sizes: "192x192",
         type: "image/png",
         purpose: "any",
       },
       {
-        src: "/icons/icon-512.png",
+        src: assetPath("/icons/icon-512.png"),
         sizes: "512x512",
         type: "image/png",
         purpose: "any",
       },
       {
-        src: "/icons/icon-maskable-512.png",
+        src: assetPath("/icons/icon-maskable-512.png"),
         sizes: "512x512",
         type: "image/png",
         purpose: "maskable",

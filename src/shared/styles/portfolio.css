@@ -87,7 +87,7 @@ html[data-theme="dark"] ::-moz-selection {
   pointer-events: none;
   background-color: var(--bg);
   background-image:
-    url("/assets/bg/portfolio-geometry.svg"),
+    var(--portfolio-bg-geo),
     linear-gradient(var(--geo-line-major) 1px, transparent 1px),
     linear-gradient(90deg, var(--geo-line-major) 1px, transparent 1px),
     linear-gradient(var(--geo-line) 1px, transparent 1px),
@@ -110,14 +110,14 @@ html[data-theme="dark"] ::-moz-selection {
 
 @media (max-width: 900px) {
   .portfolio-page::before {
-    background-image: url("/assets/bg/portfolio-geometry.svg");
+    background-image: var(--portfolio-bg-geo);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: scroll;
   }
 
   html[data-theme="dark"] .portfolio-page::before {
-    background-image: url("/assets/bg/portfolio-geometry-dark.svg");
+    background-image: var(--portfolio-bg-geo-dark);
   }
 }
 
@@ -135,7 +135,7 @@ html[data-theme="dark"] ::-moz-selection {
 
 html[data-theme="dark"] .portfolio-page::before {
   background-image:
-    url("/assets/bg/portfolio-geometry-dark.svg"),
+    var(--portfolio-bg-geo-dark),
     linear-gradient(var(--geo-line-major) 1px, transparent 1px),
     linear-gradient(90deg, var(--geo-line-major) 1px, transparent 1px),
     linear-gradient(var(--geo-line) 1px, transparent 1px),

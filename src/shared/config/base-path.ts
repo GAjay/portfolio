@@ -9,3 +9,9 @@ export function withBasePath(href: string): string {
   if (href.startsWith("/")) return `${basePath}${href}`;
   return `${basePath}/${href}`;
 }
+
+/** `public/` files (images, icons) — must include basePath on GitHub project Pages. */
+export function assetPath(path: string): string {
+  if (!path.startsWith("/")) return path;
+  return withBasePath(path);
+}
