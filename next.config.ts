@@ -53,12 +53,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  ...(githubPages
-    ? {}
-    : {
-        cacheComponents: true,
-        partialPrefetching: true,
-      }),
+  // cacheComponents conflicts with `export const dynamic = "force-static"` on manifest/robots/sitemap (required for Pages export).
   turbopack: {
     rules: {
       "src/app/globals.css": {
