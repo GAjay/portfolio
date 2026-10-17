@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
 import { getSiteUrl } from "@/shared/lib/site-url";
 
+/** Required for `output: "export"` (GitHub Pages). */
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = getSiteUrl();
   const lastModified = new Date();
