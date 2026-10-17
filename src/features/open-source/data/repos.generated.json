@@ -71,13 +71,13 @@
     "topics": []
   },
   {
-    "id": "protflio",
-    "name": "protflio",
+    "id": "portfolio",
+    "name": "portfolio",
     "description": "my portfolio",
     "language": "TypeScript",
     "stars": "0",
     "forks": "0",
-    "href": "https://github.com/GAjay/protflio",
+    "href": "https://github.com/GAjay/portfolio",
     "homepage": "",
     "topics": []
   },

@@ -3,9 +3,9 @@ description: Git commits and pushes use GAjay only — no Cursor or bot co-autho
 alwaysApply: true
 ---
 
-# Git authorship (GAjay / protflio)
+# Git authorship (GAjay / portfolio)
 
-- **Remote**: `https://github.com/GAjay/protflio.git`
+- **Remote**: `https://github.com/GAjay/portfolio.git`
 - **Author & committer** for every commit: **GAjay** `<ajay.maheshwari095@gmail.com>`
 - Do **not** add `Co-authored-by`, `Signed-off-by`, or contributor trailers for Cursor, Copilot, or other agents. Cursor may inject `Co-authored-by: Cursor <cursoragent@cursor.com>` on commit — use repo hooks to strip it (see below).
 - One-time per clone: `git config core.hooksPath .githooks` (local only; do not set global git config).
