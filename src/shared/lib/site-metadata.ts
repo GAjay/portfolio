@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/shared/config/site";
+import { assetPath } from "@/shared/config/base-path";
 import { absoluteUrl, getSiteUrl } from "./site-url";
 
 const siteUrl = getSiteUrl();
@@ -29,7 +30,7 @@ export function buildRootMetadata(): Metadata {
       description,
       images: [
         {
-          url: "/icons/icon-512.png",
+          url: assetPath("/icons/icon-512.png"),
           width: 512,
           height: 512,
           alt: `${siteConfig.name} — full-stack AI engineer portfolio`,
@@ -40,7 +41,7 @@ export function buildRootMetadata(): Metadata {
       card: "summary_large_image",
       title,
       description,
-      images: ["/icons/icon-512.png"],
+      images: [assetPath("/icons/icon-512.png")],
     },
     robots: {
       index: true,
@@ -94,9 +95,7 @@ export function buildPersonJsonLd() {
     "@id": `${siteUrl}/#person`,
     name: siteConfig.name,
     url: siteUrl,
-    image: siteConfig.heroPortrait.startsWith("http")
-      ? siteConfig.heroPortrait
-      : `${getSiteUrl()}${siteConfig.heroPortrait}`,
+    image: absoluteUrl(siteConfig.heroPortrait),
     email: `mailto:${siteConfig.email}`,
     jobTitle: siteConfig.role.split("·")[0]?.trim() ?? "Full-Stack AI Engineer",
     description: siteConfig.aeo.summary,

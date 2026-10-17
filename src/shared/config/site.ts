@@ -1,5 +1,5 @@
 import profile from "./profile.generated.json";
-import { assetPath, withBasePath } from "./base-path";
+import { withBasePath } from "./base-path";
 import { NAV_SECTION_LABELS, NAV_TAB_ORDER } from "@/shared/lib/nav-scroll-sections";
 
 export const siteConfig = {
@@ -46,9 +46,9 @@ export const siteConfig = {
   availability: "Open to remote opportunities",
   avatarUrl: profile.avatarUrl,
   /** Hero + contact portrait (local asset). */
-  heroPortrait: assetPath("/assets/hero/portrait.png"),
-  /** About quote band — professional portrait. */
-  aboutPortrait: assetPath("/assets/about/portrait.png"),
+  /** Paths under `public/` — Next `Image` adds `basePath`; use `assetPath()` for `<img>`. */
+  heroPortrait: "/assets/hero/portrait.png",
+  aboutPortrait: "/assets/about/portrait.png",
   github: {
     handle: profile.handle,
     url: profile.githubUrl,

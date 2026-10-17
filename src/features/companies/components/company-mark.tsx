@@ -1,3 +1,4 @@
+import { assetPath } from "@/shared/config/base-path";
 import type { Company } from "../data/companies";
 
 type CompanyMarkProps = {
@@ -12,7 +13,7 @@ export function CompanyMark({ company }: CompanyMarkProps) {
     <span className="company-mark">
       {/* Native img — reliable sizing for SVG/PNG brand assets in the carousel */}
       <img
-        src={company.logo}
+        src={assetPath(company.logo)}
         alt=""
         className={`${brand}${mono}`}
         loading="lazy"

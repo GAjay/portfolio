@@ -10,6 +10,7 @@ import {
 import { ContactMailForm } from "./contact-mail-form";
 import { useScrollReveal } from "@/shared/hooks/use-scroll-reveal";
 import { SiteFooterNav } from "@/shared/components/site-footer-nav";
+import { assetPath } from "@/shared/config/base-path";
 import { resumeHref, siteConfig, socialLinks } from "@/shared/config/site";
 import { socialLinkIcons } from "@/shared/lib/social-link-icons";
 
@@ -30,7 +31,7 @@ export function ContactSection() {
           <div className="contact-profile">
             <div className="contact-photo">
               <Image
-                src={siteConfig.heroPortrait}
+                src={assetPath(siteConfig.heroPortrait)}
                 alt=""
                 width={80}
                 height={80}

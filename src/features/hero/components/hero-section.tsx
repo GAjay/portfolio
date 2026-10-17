@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { IconArrow } from "@/shared/components/portfolio-icons";
 import { AnimatedValue } from "@/shared/components/animated-value";
 import { RippleAnchor } from "@/shared/components/ripple";
-import { withBasePath } from "@/shared/config/base-path";
+import { assetPath, withBasePath } from "@/shared/config/base-path";
 import { PortfolioLead } from "@/shared/components/portfolio-typography";
 import { resumeHref, siteConfig } from "@/shared/config/site";
 import { HeroDeveloperCode } from "./hero-developer-code";
@@ -47,7 +47,7 @@ export function HeroSection() {
         </div>
         <div className="vis">
           <Image
-            src={siteConfig.heroPortrait}
+            src={assetPath(siteConfig.heroPortrait)}
             alt={`Portrait of ${siteConfig.name}`}
             width={621}
             height={621}

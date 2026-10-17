@@ -9,6 +9,7 @@ import {
 } from "@/shared/components/portfolio-typography";
 import { IconArrow } from "@/shared/components/portfolio-icons";
 import { RippleAnchor } from "@/shared/components/ripple";
+import { assetPath } from "@/shared/config/base-path";
 import { siteConfig } from "@/shared/config/site";
 import type { JourneyEntry } from "../data/journey";
 
@@ -27,7 +28,7 @@ function JourneyLogo({ logoId }: { logoId?: string }) {
   }
   return (
     <img
-      src={company.logo}
+      src={assetPath(company.logo)}
       alt=""
       className={`company-logo company-logo--${logoId}${company.monoDark ? " company-logo--mono" : ""}`}
       loading="lazy"

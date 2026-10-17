@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { assetPath } from "@/shared/config/base-path";
 import { PortfolioBody } from "@/shared/components/portfolio-typography";
 import { siteConfig, socialLinks } from "@/shared/config/site";
 import { socialLinkIcons } from "@/shared/lib/social-link-icons";
@@ -11,7 +12,7 @@ export function AboutQuoteSection() {
       <div className="wrap about-quote__inner">
         <div className="about-quote__portrait">
           <Image
-            src={aboutPortrait}
+            src={assetPath(aboutPortrait)}
             alt={name}
             width={621}
             height={621}
