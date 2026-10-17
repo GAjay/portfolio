@@ -47,6 +47,10 @@ html[data-theme="dark"] {
   color: #fff;
 }
 
+.portfolio-page .pill a.is-active {
+  color: var(--on-btn);
+}
+
 .portfolio-page a.btn.o {
   color: var(--ink);
 }
@@ -132,8 +136,9 @@ svg.i {
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
   transition:
-    border-color 0.25s ease,
-    background-color 0.25s ease;
+    border-color 0.35s ease,
+    background-color 0.35s ease,
+    backdrop-filter 0.35s ease;
 }
 
 .nav__inner {
@@ -213,6 +218,7 @@ svg.i {
 }
 
 .pill {
+  position: relative;
   display: flex;
   gap: 2px;
   padding: 5px;
@@ -226,11 +232,42 @@ svg.i {
   -webkit-overflow-scrolling: touch;
 }
 
+.pill__indicator {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  height: calc(100% - 10px);
+  border-radius: 99px;
+  background: var(--btn);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  will-change: transform, width;
+}
+
+.pill__indicator[data-animate="true"] {
+  transition:
+    transform 0.56s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.56s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.28s ease;
+}
+
+.pill[data-animate="true"] a {
+  transition: color 0.56s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pill__indicator[data-visible="true"] {
+  opacity: 1;
+}
+
 .pill::-webkit-scrollbar {
   display: none;
 }
 
 .pill a {
+  position: relative;
+  z-index: 1;
   padding: 8px 12px;
   border-radius: 99px;
   font-size: 12.5px;
@@ -239,15 +276,37 @@ svg.i {
   white-space: nowrap;
   text-decoration: none;
   flex-shrink: 0;
+  background: transparent;
+  transition:
+    color 0.28s ease,
+    opacity 0.2s ease;
 }
 
 .pill a.is-active {
-  background: var(--soft);
+  color: var(--on-btn);
+}
+
+.pill a.is-active:hover {
+  color: var(--on-btn);
+  opacity: 0.92;
+}
+
+.pill a:hover:not(.is-active) {
   color: var(--ink);
 }
 
-.pill a:hover {
-  color: var(--ink);
+@media (prefers-reduced-motion: reduce) {
+  .pill__indicator {
+    transition: none;
+  }
+
+  .pill a {
+    transition: none;
+  }
+
+  .pill a.is-active {
+    background: var(--btn);
+  }
 }
 
 .nav-cta {

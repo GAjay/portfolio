@@ -1,41 +1,35 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { NavLink, NavSectionId } from "@/shared/config/site";
 import { navLinks } from "@/shared/config/site";
-import { SECTION_SCROLL_OFFSET } from "@/shared/lib/scroll-section";
+import {
+  NAV_SCROLL_SECTIONS,
+  navIdForDomSectionId,
+} from "@/shared/lib/nav-scroll-sections";
+import {
+  domIdForNavSection,
+  scrollTopForSectionId,
+  SECTION_SCROLL_OFFSET,
+} from "@/shared/lib/scroll-section";
 
 const sectionIds = navLinks
   .filter((link): link is NavLink & { id: NavSectionId } => !link.href)
   .map((link) => link.id);
 
-/** Page order — maps DOM ids to nav highlight. */
-const scrollSectionIds: { domId: string; navId: NavSectionId }[] = [
-  { domId: "home", navId: "home" },
-  { domId: "stack", navId: "home" },
-  { domId: "journey", navId: "journey" },
-  { domId: "companies", navId: "journey" },
-  { domId: "projects", navId: "projects" },
-  { domId: "content", navId: "content" },
-  { domId: "content-youtube", navId: "content" },
-  { domId: "content-medium", navId: "content" },
-  { domId: "code", navId: "code" },
-  { domId: "mentor", navId: "mentor" },
-  { domId: "recommendations", navId: "journey" },
-  { domId: "contact", navId: "mentor" },
-];
+function sectionDocumentTop(el: HTMLElement): number {
+  return el.getBoundingClientRect().top + window.scrollY;
+}
 
 function activeSectionFromScroll(): NavSectionId {
+  const scrollLine = window.scrollY + SECTION_SCROLL_OFFSET;
   let active: NavSectionId = "home";
-  let bestTop = Number.NEGATIVE_INFINITY;
 
-  for (const { domId, navId } of scrollSectionIds) {
+  for (const { domId, navId } of NAV_SCROLL_SECTIONS) {
     const el = document.getElementById(domId);
     if (!el) continue;
-    const top = el.getBoundingClientRect().top;
-    if (top <= SECTION_SCROLL_OFFSET && top > bestTop) {
-      bestTop = top;
+    if (scrollLine >= sectionDocumentTop(el) - 2) {
       active = navId;
     }
   }
@@ -47,15 +41,33 @@ function hashToNavId(hash: string): NavSectionId | null {
   const id = hash.replace("#", "");
   if (!id) return "home";
   if (sectionIds.includes(id as NavSectionId)) return id as NavSectionId;
-  if (id === "content-youtube" || id === "content-medium") return "content";
-  if (id === "recommendations" || id === "stack" || id === "companies") return null;
-  return null;
+  return navIdForDomSectionId(id);
 }
+
+const NAV_PILL_ANIM_MS = 560;
 
 export function useNavActive() {
   const pathname = usePathname();
   const [activeSection, setActiveSection] = useState<NavSectionId>("home");
   const [headerScrolled, setHeaderScrolled] = useState(false);
+  const navScrollTargetRef = useRef<NavSectionId | null>(null);
+  const indicatorTimerRef = useRef(0);
+  const [indicatorAnimate, setIndicatorAnimate] = useState(false);
+
+  const completeNavScroll = useCallback(() => {
+    navScrollTargetRef.current = null;
+  }, []);
+
+  const setActiveNavSection = useCallback((id: NavSectionId, animMs = NAV_PILL_ANIM_MS) => {
+    navScrollTargetRef.current = id;
+    setActiveSection(id);
+    setIndicatorAnimate(true);
+    window.clearTimeout(indicatorTimerRef.current);
+    indicatorTimerRef.current = window.setTimeout(
+      () => setIndicatorAnimate(false),
+      Math.max(animMs, NAV_PILL_ANIM_MS),
+    );
+  }, []);
 
   useEffect(() => {
     if (pathname !== "/") return;
@@ -65,15 +77,41 @@ export function useNavActive() {
       setHeaderScrolled(window.scrollY > 12);
     };
 
-    syncFromScroll();
+    const releaseNavScrollTarget = (target: NavSectionId) => {
+      const top = scrollTopForSectionId(domIdForNavSection(target));
+      if (top === null) return true;
+      return Math.abs(window.scrollY - top) <= 10;
+    };
+
+    const fromHash = hashToNavId(window.location.hash);
+    if (fromHash) setActiveSection(fromHash);
+    else syncFromScroll();
 
     let raf = 0;
     const onScroll = () => {
       cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(syncFromScroll);
+      raf = requestAnimationFrame(() => {
+        const scrolled = window.scrollY > 12;
+        setHeaderScrolled((prev) => (prev === scrolled ? prev : scrolled));
+
+        const scrollTarget = navScrollTargetRef.current;
+        if (scrollTarget) {
+          setActiveSection(scrollTarget);
+          if (releaseNavScrollTarget(scrollTarget)) {
+            navScrollTargetRef.current = null;
+          }
+          return;
+        }
+
+        syncFromScroll();
+      });
     };
 
     const onHashChange = () => {
+      if (navScrollTargetRef.current) {
+        setActiveSection(navScrollTargetRef.current);
+        return;
+      }
       const fromHash = hashToNavId(window.location.hash);
       if (fromHash) setActiveSection(fromHash);
       else syncFromScroll();
@@ -85,6 +123,7 @@ export function useNavActive() {
 
     return () => {
       cancelAnimationFrame(raf);
+      window.clearTimeout(indicatorTimerRef.current);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("hashchange", onHashChange);
       window.removeEventListener("resize", onScroll);
@@ -97,5 +136,13 @@ export function useNavActive() {
     return link.id === activeSection;
   };
 
-  return { isActive, pathname, headerScrolled };
+  return {
+    isActive,
+    activeSection,
+    indicatorAnimate,
+    pathname,
+    headerScrolled,
+    setActiveNavSection,
+    completeNavScroll,
+  };
 }

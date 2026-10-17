@@ -55,7 +55,7 @@ Matches `src/app/page.tsx`.
 
 | Block | Feature | Notes |
 | --- | --- | --- |
-| — | `header` | Nav pill, theme toggle, Topmate CTA |
+| — | `header` | Nav pill (order = page scroll: Home → Experience → Projects → Content → Open Source → Mentorship → Blog), theme toggle, Topmate CTA |
 | — | `hero` | Greeting, typewriter H1, bio, CTAs (work + resume), portrait, code card, reach |
 | — | `about` | Quote band + portrait overlap (`about-quote-section`) |
 | **01** | `tech-stack` | Tools marquee / strip (white tiles in dark mode) |

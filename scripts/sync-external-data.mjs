@@ -557,10 +557,12 @@ async function loadGithubSnapshot() {
 
   const totalStars = repos.reduce((n, r) => n + r.stargazers_count, 0);
 
+  const portfolioDisplayName = "Ajay Kumar Maheshwari";
   const profile = {
-    name: user.name || "Ajay Kumar Maheshwari",
+    name: portfolioDisplayName,
     handle: GITHUB_USER,
-    bio: user.bio || "",
+    bio:
+      "Full-stack AI engineer — React, Next.js, Node.js, TypeScript, and production AI features.",
     location: user.location || "India",
     avatarUrl: user.avatar_url,
     blog: user.blog || "",

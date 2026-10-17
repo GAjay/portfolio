@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { NavPill } from "./nav-pill";
 import { ThemeToggle } from "@/features/navigation/components/theme-toggle";
 import { IconArrow } from "@/shared/components/portfolio-icons";
 import { RippleAnchor } from "@/shared/components/ripple";
 import { journeyEntries } from "@/features/journey/data/journey";
-import { navHref, navLinks, siteConfig, type NavSectionId } from "@/shared/config/site";
-import { scrollToSectionId } from "@/shared/lib/scroll-section";
+import { navLinks, siteConfig, type NavSectionId } from "@/shared/config/site";
+import { scrollToSectionId, scrollTopForSectionId } from "@/shared/lib/scroll-section";
+import { scrollDurationForDistance } from "@/shared/lib/smooth-scroll";
 import { useNavActive } from "../hooks/use-nav-active";
 
 const navSectionDomId: Record<NavSectionId, string> = {
@@ -21,7 +23,14 @@ const navSectionDomId: Record<NavSectionId, string> = {
 const currentJob = journeyEntries[0];
 
 export function SiteHeader() {
-  const { isActive, pathname, headerScrolled } = useNavActive();
+  const {
+    isActive,
+    pathname,
+    headerScrolled,
+    indicatorAnimate,
+    setActiveNavSection,
+    completeNavScroll,
+  } = useNavActive();
 
   const onSectionNavClick = (
     event: React.MouseEvent<HTMLAnchorElement>,
@@ -29,7 +38,15 @@ export function SiteHeader() {
   ) => {
     if (pathname !== "/") return;
     event.preventDefault();
-    scrollToSectionId(navSectionDomId[sectionId]);
+    const domId = navSectionDomId[sectionId];
+    const targetTop = scrollTopForSectionId(domId);
+    const durationMs =
+      targetTop === null ? 560 : scrollDurationForDistance(targetTop - window.scrollY);
+    setActiveNavSection(sectionId, durationMs);
+    scrollToSectionId(domId, {
+      behavior: "smooth",
+      onComplete: completeNavScroll,
+    });
   };
 
   return (
@@ -39,47 +56,19 @@ export function SiteHeader() {
         <b>{siteConfig.initials}</b>
         <span className="logo__text">
           <span className="logo__name">{siteConfig.name}</span>
-          {currentJob ? (
-            <>
-              <small className="logo__company">{currentJob.company}</small>
-              <small className="logo__title">{currentJob.role}</small>
-            </>
-          ) : (
-            <small>{siteConfig.role}</small>
-          )}
+          <small className="logo__title">
+            {currentJob?.role ?? siteConfig.role}
+          </small>
         </span>
       </Link>
 
-      <nav className="pill" aria-label="Primary">
-        {navLinks.map((item) => {
-          const href = navHref(item);
-          const active = isActive(item);
-          if (item.href === "/blog") {
-            return (
-              <Link
-                key={item.id}
-                href="/blog"
-                className={active ? "is-active" : undefined}
-                aria-current={active ? "page" : undefined}
-              >
-                {item.label}
-              </Link>
-            );
-          }
-
-          return (
-            <a
-              key={item.id}
-              href={href}
-              className={active ? "is-active" : undefined}
-              aria-current={active ? "location" : undefined}
-              onClick={(event) => onSectionNavClick(event, item.id)}
-            >
-              {item.label}
-            </a>
-          );
-        })}
-      </nav>
+      <NavPill
+        links={navLinks}
+        pathname={pathname}
+        isActive={isActive}
+        indicatorAnimate={indicatorAnimate}
+        onSectionClick={onSectionNavClick}
+      />
 
       <div className="right">
         <ThemeToggle />

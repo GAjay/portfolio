@@ -1,5 +1,6 @@
 import profile from "./profile.generated.json";
 import { withBasePath } from "./base-path";
+import { NAV_SECTION_LABELS, NAV_TAB_ORDER } from "@/shared/lib/nav-scroll-sections";
 
 export const siteConfig = {
   initials: "AK",
@@ -177,12 +178,10 @@ export type NavLink =
   | { id: "blog"; label: string; href: "/blog" };
 
 export const navLinks: NavLink[] = [
-  { id: "home", label: "Home" },
-  { id: "projects", label: "Projects" },
-  { id: "journey", label: "Experience" },
-  { id: "content", label: "Content" },
-  { id: "code", label: "Open Source" },
-  { id: "mentor", label: "Mentorship" },
+  ...NAV_TAB_ORDER.map((id) => ({
+    id,
+    label: NAV_SECTION_LABELS[id],
+  })),
   { id: "blog", label: "Blog", href: "/blog" },
 ];
 
