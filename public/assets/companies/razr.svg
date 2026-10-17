@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 32" role="img" aria-label="Razr Corp">
+  <text
+    x="0"
+    y="24"
+    font-family="Inter, system-ui, sans-serif"
+    font-size="22"
+    font-weight="800"
+    letter-spacing="-0.04em"
+    fill="#0E0E11"
+  >
+    razr
+  </text>
+  <text
+    x="58"
+    y="24"
+    font-family="Inter, system-ui, sans-serif"
+    font-size="13"
+    font-weight="600"
+    letter-spacing="0.02em"
+    fill="#0E0E11"
+    opacity="0.72"
+  >
+    corp
+  </text>
+</svg>

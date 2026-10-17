@@ -1,0 +1,32 @@
+[
+  {
+    "id": "rec-linkedin-1",
+    "quote": "Ajay brings strong ownership to frontend work—clear communication, solid architecture choices, and reliable delivery under tight deadlines.",
+    "author": "Peer reviewer",
+    "role": "Senior Engineer · Enterprise product team",
+    "source": "linkedin",
+    "href": "https://www.linkedin.com/in/ajaymaheshwari24/details/recommendations/",
+    "date": "2024",
+    "avatarUrl": "https://ui-avatars.com/api/?name=SR&background=0e0e11&color=fff&size=128&bold=true"
+  },
+  {
+    "id": "rec-linkedin-2",
+    "quote": "He mentors with patience and depth. Sessions are structured, practical, and immediately useful for interviews and day-to-day engineering.",
+    "author": "Engineering lead",
+    "role": "Recommendation on LinkedIn",
+    "source": "linkedin",
+    "href": "https://www.linkedin.com/in/ajaymaheshwari24/details/recommendations/",
+    "date": "2023",
+    "avatarUrl": "https://ui-avatars.com/api/?name=EL&background=232329&color=fff&size=128&bold=true"
+  },
+  {
+    "id": "rec-topmate-0",
+    "quote": "The concept overview was well explained, and the guidance throughout was very helpful",
+    "author": "Anonymous",
+    "role": "Mentorship session · Topmate",
+    "source": "topmate",
+    "avatarUrl": "https://ui-avatars.com/api/?name=Guest&background=6b6b74&color=fff&size=128&bold=true",
+    "href": "https://topmate.io/ajay_maheshwari",
+    "date": "Dec 2025"
+  }
+]

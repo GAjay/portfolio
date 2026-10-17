@@ -3,23 +3,33 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "node scripts/sync-external-data.mjs && next dev",
+    "sync:data": "node scripts/sync-external-data.mjs && node scripts/apply-instagram-feed.mjs",
+    "sync:instagram": "node scripts/crawl-instagram.mjs && node scripts/apply-instagram-feed.mjs",
+    "playwright:install": "playwright install chromium",
+    "prebuild": "INSTAGRAM_SKIP_CRAWL=1 node scripts/sync-external-data.mjs && node scripts/apply-instagram-feed.mjs",
+    "build": "next build --webpack",
+    "build:pages": "node scripts/prepare-github-pages-export.mjs && next build --webpack",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "asriui": "^0.1.1",
+    "framer-motion": "^14.2.0",
     "next": "16.4.0",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },
   "devDependencies": {
+    "@ducanh2912/next-pwa": "^10.2.9",
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.0",
+    "playwright": "^1.49.1",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

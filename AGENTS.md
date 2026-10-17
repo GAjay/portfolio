@@ -1,3 +1,13 @@
+## Portfolio UI
+
+When creating or updating UI, use the committed reference mock and agent guide:
+
+- Image: `design/reference/portfolio-ui-reference.jpg`
+- Guide: `design/reference/AGENT-UI.md`
+- Styles: `src/shared/styles/portfolio.css` · Conventions: `.cursor/rules/ponytail.mdc`
+
+**Custom agent (Cursor 2.1+):** not in the Agent/Ask mode dropdown. Use **`/portfolio-ui`** in Agent chat (skill), or **Customize → Skills → portfolio-ui**. Pin as a session mode: type `/portfolio-ui`, then **Option+Enter** (Mac) or **Alt+Enter** (Windows), or choose **Use as Mode**. Subagent for delegation: `.cursor/agents/portfolio-ui.md` (**Customize → Subagents**). If missing after edits: **Developer: Reload Window** and open the **`/Users/apple/portfolio`** folder as the workspace root.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 ## This is NOT the Next.js you know

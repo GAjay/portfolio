@@ -1,0 +1,15 @@
+---
+description: UI work — open the portfolio mock image and AGENT-UI.md before editing
+globs: src/**/*.{tsx,css}
+alwaysApply: false
+---
+
+# UI creation from reference
+
+When adding or changing portfolio UI:
+
+1. **View** `design/reference/portfolio-ui-reference.jpg` (full-page mock).
+2. **Read** `design/reference/AGENT-UI.md` for section checklist and file map.
+3. **Implement** with `portfolio.css` + feature modules per `ponytail.mdc`.
+
+Do not invent new layout patterns when the reference already defines spacing, rails, pills, or card shapes. If the mock and `design.md` disagree, **prefer the image** and update `design.md` in the same change.

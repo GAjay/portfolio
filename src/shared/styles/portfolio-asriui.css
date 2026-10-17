@@ -1,0 +1,185 @@
+/* AsriUI inside portfolio — readable text + timeline on template tokens */
+
+.portfolio-page {
+  --asriui-color-background: var(--card);
+  --asriui-color-foreground: var(--ink);
+  --asriui-color-muted: var(--soft);
+  --asriui-color-muted-foreground: var(--muted);
+  --asriui-color-border: var(--line);
+  --asriui-color-primary: var(--btn);
+  --asriui-color-primary-foreground: var(--on-btn);
+  --asriui-color-ring: var(--ink);
+}
+
+.portfolio-page .journey-timeline {
+  width: 100%;
+  color: var(--ink);
+}
+
+.portfolio-page .journey-timeline [class*="title"] {
+  color: var(--ink) !important;
+}
+
+.portfolio-page .journey-timeline [class*="date"] {
+  color: var(--muted) !important;
+}
+
+.portfolio-page .journey-timeline [class*="description"] {
+  color: var(--muted) !important;
+}
+
+.portfolio-page .journey-timeline__company {
+  display: block;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.35rem;
+}
+
+.portfolio-page .journey-timeline__summary {
+  margin: 0 0 0.65rem;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.ripple-host {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ripple-wave {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: scale(0);
+  opacity: 0.35;
+  background: color-mix(in srgb, var(--ink) 18%, transparent);
+  animation: portfolio-ripple 620ms ease-out forwards;
+}
+
+.ripple-wave--light {
+  background: color-mix(in srgb, var(--on-btn) 28%, transparent);
+  opacity: 0.45;
+}
+
+@keyframes portfolio-ripple {
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.theme-ripple-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+  will-change: clip-path;
+}
+
+/* AsriUI Form — contact mailto layout */
+.portfolio-page .contact-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  align-self: start;
+  width: 100%;
+  min-width: 0;
+}
+
+.portfolio-page .contact-form > [class*="fields"] {
+  display: contents;
+}
+
+.portfolio-page .contact-form [class*="field"] {
+  min-width: 0;
+}
+
+.portfolio-page .contact-form [class*="field"]:has(textarea) {
+  grid-column: 1 / -1;
+}
+
+.portfolio-page .contact-form label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.portfolio-page .contact-form input,
+.portfolio-page .contact-form textarea,
+.portfolio-page .contact-form [class*="field"] input,
+.portfolio-page .contact-form [class*="field"] textarea {
+  font: inherit;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--ink);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.portfolio-page .contact-form textarea,
+.portfolio-page .contact-form [class*="field"] textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.portfolio-page .contact-form [class*="actions"] {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.portfolio-page .contact-form [class*="actions"] button {
+  width: 100%;
+  min-height: 46px;
+  padding: 12px 18px;
+  border-radius: 99px;
+  border: none;
+  background: var(--btn);
+  color: var(--on-btn);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.portfolio-page .contact-form [class*="actions"] button::after {
+  content: " →";
+}
+
+.portfolio-page .sec-kicker-chips .chip {
+  margin: 0;
+}
+
+.offline-page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  gap: 1rem;
+}
+
+.offline-page__link {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.portfolio-page .rec-quote {
+  margin: 0;
+  border: none;
+  padding: 0;
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}

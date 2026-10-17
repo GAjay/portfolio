@@ -1,0 +1,25 @@
+{
+  "youtube": {
+    "url": "https://www.youtube.com/@theplainscript",
+    "handle": "@theplainscript"
+  },
+  "instagram": {
+    "url": "https://www.instagram.com/theplainscript/",
+    "handle": "@theplainscript",
+    "followerCount": null,
+    "postUrls": [],
+    "items": []
+  },
+  "medium": {
+    "url": "https://theplainscript.medium.com/",
+    "handle": "theplainscript",
+    "followerCount": null,
+    "articleCount": null,
+    "profileUrls": [
+      "https://theplainscript.medium.com/",
+      "https://theplainscript.medium.com/about",
+      "https://medium.com/@theplainscript",
+      "https://medium.com/@theplainscript/about"
+    ]
+  }
+}

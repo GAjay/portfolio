@@ -17,6 +17,14 @@
 /.next/
 /out/
 
+# PWA service worker (generated at build)
+public/sw.js
+public/sw.js.map
+public/workbox-*.js
+public/workbox-*.js.map
+public/swe-worker-*.js
+public/fallback-*.js
+
 # production
 /build
 
@@ -32,6 +40,12 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+!.env.production
+
+# instaloader session (local Instagram login for sync_instagram.py)
+session-*
+
 
 # vercel
 .vercel

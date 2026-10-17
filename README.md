@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio (Next.js + AsriUI + PWA)
 
-## Getting Started
+Single-page portfolio for **Ajay Kumar Maheshwari** — Next.js App Router, custom reference UI, [AsriUI](https://gajay.github.io/asriui/) for forms/typography primitives, and PWA via `@ducanh2912/next-pwa`.
 
-First, run the development server:
+## Docs
+
+| File | Contents |
+| --- | --- |
+| [`design.md`](design.md) | Architecture, tokens, section map, data flow |
+| [`design/reference/AGENT-UI.md`](design/reference/AGENT-UI.md) | Visual reference + agent UI checklist |
+| [`.cursor/rules/ponytail.mdc`](.cursor/rules/ponytail.mdc) | Cursor conventions |
+| [`AGENTS.md`](AGENTS.md) | Next.js + portfolio agent notes |
+
+## Feature modules
+
+```
+src/
+  app/                 page.tsx, layout, blog, offline, manifest, SEO routes
+  features/
+    about/ header/ hero/ tech-stack/ companies/ journey/
+    projects/ content/ open-source/ mentorship/ recommendations/ contact/
+  shared/
+    config/site.ts     copy, links, resumeHref(), socialLinks
+    components/        RefSection, portfolio-typography, providers
+    styles/            portfolio-template.css, portfolio.css, portfolio-asriui.css
+```
+
+Home section order is defined in `src/app/page.tsx` (see `design.md`).
+
+## Customize
+
+- **Copy & URLs:** `src/shared/config/site.ts`
+- **Resume:** replace `public/resume/ajay-kumar-maheshwari-resume.pdf`
+- **Per-section data:** `src/features/<name>/data/`
+- **Sync GitHub / Medium / content stats:** `npm run sync:data` (also runs on prebuild)
+
+## Scripts
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+After `npm run build`, check Chrome DevTools → Application → Manifest / Service Workers.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## GitHub Pages
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Push to **`main`** runs [`.github/workflows/deploy-github-pages.yml`](.github/workflows/deploy-github-pages.yml).
 
-## Learn More
+1. Repo **Settings → Pages → Build and deployment**: source **GitHub Actions**.
+2. Project site: `https://<user>.github.io/<repo>/` — set `NEXT_PUBLIC_BASE_PATH=/repo` (CI or env).
+3. Custom domain: set `NEXT_PUBLIC_SITE_URL` in `.env.production` or repo variables.
 
-To learn more about Next.js, take a look at the following resources:
+Local export example:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+GITHUB_PAGES=1 NEXT_PUBLIC_BASE_PATH=/portfolio NEXT_PUBLIC_SITE_URL=https://you.github.io/portfolio npm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## PWA
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Manifest: `src/app/manifest.ts`
+- Offline: `src/app/offline/page.tsx`
+- Service worker: production build only (`public/sw.js` generated)

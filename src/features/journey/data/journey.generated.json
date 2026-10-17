@@ -1,0 +1,115 @@
+[
+  {
+    "id": "j1",
+    "period": "2023 — Present",
+    "role": "Lead Engineer · Full-Stack & AI",
+    "company": "Publicis Sapient",
+    "logoId": "publicis",
+    "summary": "Leading full-stack delivery for global enterprise programs—web platforms, services, AI-assisted workflows, and cloud-native release trains.",
+    "overview": [
+      "At Publicis Sapient I lead engineering across multi-squad digital programs for banking, retail, and platform clients—React and Next.js surfaces, APIs and integrations, and practical AI features where they improve author and customer experiences. The work sits at the intersection of experience design, content architecture, and long-lived product roadmaps—not one-off campaign sites.",
+      "I set the technical direction for React and Next.js stacks, shared component libraries, and how teams integrate with Adobe Experience Manager and AWS-hosted services. That includes release trains, quality gates, and the glue between UX, product owners, and offshore delivery partners.",
+      "Day to day I still review critical paths in code, unblock production issues, and mentor engineers so squads can ship confidently without every decision routing through a single architect."
+    ],
+    "highlights": [
+      "Defined frontend architecture for micro-frontend and modular SPA patterns across squads, with shared linting, testing, and design-token contracts.",
+      "Rolled out Next.js and TypeScript standards with performance budgets, Core Web Vitals tracking, and accessibility checks in CI.",
+      "Partnered with UX and AEM teams on headless and hybrid content models, component mapping, and author-friendly templates.",
+      "Led technical discovery and stakeholder demos for platform upgrades, migration waves, and phased rollouts.",
+      "Coached engineers on component API design, state management trade-offs, and production debugging on distributed systems.",
+      "Improved handoff between design (Figma) and implementation through Storybook documentation and review rituals."
+    ],
+    "tags": [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "AEM",
+      "AWS",
+      "Design systems"
+    ]
+  },
+  {
+    "id": "j2",
+    "period": "2020 — 2023",
+    "role": "Senior Member of Technical Staff",
+    "company": "Vymo",
+    "logoId": "vymo",
+    "summary": "SMTS on sales engagement and field-force products—web and mobile surfaces used daily by distributed revenue teams.",
+    "overview": [
+      "Vymo builds software for field sales and relationship teams who plan their day, follow leads, and report pipeline from the road. I worked on the core product experience where reliability and speed directly affect adoption in the field.",
+      "My focus was the React web app and shared patterns with React Native—activity views, manager dashboards, and data-heavy lists that had to stay responsive on average hardware and variable networks.",
+      "I collaborated closely with backend and mobile engineers on GraphQL schemas and API shapes so clients stayed consistent, typed, and easier to evolve without breaking releases every sprint."
+    ],
+    "highlights": [
+      "Shipped end-to-end flows for activity planning, lead follow-up, and manager oversight across web and mobile-aligned UX.",
+      "Improved list and table performance via virtualization, memoization, and tighter API pagination contracts.",
+      "Introduced shared UI primitives and documentation so web and React Native teams reused patterns instead of diverging.",
+      "Worked with GraphQL and Node services to reduce over-fetching and simplify client state for complex dashboards.",
+      "Participated in on-call rotation and root-cause analysis for client-reported UI defects in production.",
+      "Supported hiring and onboarding through code review standards and pairing on feature slices."
+    ],
+    "tags": [
+      "React",
+      "React Native",
+      "Node.js",
+      "GraphQL",
+      "Performance"
+    ]
+  },
+  {
+    "id": "j3",
+    "period": "2020",
+    "role": "Frontend Developer",
+    "company": "Razertech",
+    "logoId": "razertech",
+    "summary": "Product-studio and agency delivery at Razertech—marketing sites, CMS builds, and early single-page apps for startups and brands.",
+    "overview": [
+      "Short 2020 engagement at Razertech (razrcorp.com) between commerce consulting and joining Vymo—fast-turn marketing sites, WordPress and custom CMS themes, and React experiments for campaigns and MVPs.",
+      "I owned front-of-house implementation from responsive layouts through CMS handoff, working with design and account leads on tight release windows.",
+      "That stretch reinforced clear communication, performance basics, and maintainable markup before moving into product engineering at scale."
+    ],
+    "highlights": [
+      "Built marketing sites and web applications with semantic HTML, CSS architecture, and progressive enhancement.",
+      "Delivered WordPress and custom CMS themes with editor-friendly fields and reusable partials.",
+      "Ran estimates and iterative releases with designers and stakeholders on fixed timelines.",
+      "Shipped early React SPAs for interactive campaigns and product experiments.",
+      "Maintained cross-browser QA, asset optimization, and handoff documentation for clients.",
+      "Supported junior developers on Git workflow, code review, and browser debugging."
+    ],
+    "tags": [
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "WordPress",
+      "React"
+    ]
+  },
+  {
+    "id": "j4",
+    "period": "2015 — 2020",
+    "role": "Software Engineer",
+    "company": "Ranosys",
+    "logoId": "ranosys",
+    "summary": "Digital commerce delivery at Ranosys—Adobe Commerce storefronts, integrations, and modern frontends for enterprise retail clients.",
+    "overview": [
+      "Ranosys is a global digital commerce and transformation partner. I worked on client programs where Adobe Commerce (Magento) storefronts, extensions, and integrations had to ship on fixed launch dates for high-traffic retail brands.",
+      "The stack combined PHP themes and modules with progressively adopted React and modern JavaScript. I focused on customer-facing UX, checkout reliability, and keeping third-party payment, search, and CMS plugins stable through peak seasons.",
+      "I collaborated with solution architects, QA, and client stakeholders on caching, deployment runbooks, and UAT so releases stayed predictable across multi-store configurations."
+    ],
+    "highlights": [
+      "Delivered themed Adobe Commerce storefronts and seller workflows for retail go-lives with strict deadlines.",
+      "Introduced React islands and modern JS build tooling alongside legacy PHP theme structures.",
+      "Optimized catalog, cart, and checkout flows with performance and full-page cache awareness.",
+      "Integrated payments, search, and CMS extensions with clear handoffs between frontend and platform teams.",
+      "Documented deployment and rollback steps for multi-store commerce environments.",
+      "Supported cross-browser QA, accessibility fixes, and production defect triage on critical paths."
+    ],
+    "tags": [
+      "Adobe Commerce",
+      "React",
+      "PHP",
+      "JavaScript",
+      "E‑commerce"
+    ]
+  }
+]

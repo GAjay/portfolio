@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <pattern id="fine" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#f3f3f5" stroke-opacity="0.04" stroke-width="1" />
+    </pattern>
+    <pattern id="major" width="96" height="96" patternUnits="userSpaceOnUse">
+      <path d="M 96 0 L 0 0 0 96" fill="none" stroke="#f3f3f5" stroke-opacity="0.075" stroke-width="1" />
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="#0b0b0e" />
+  <rect width="100%" height="100%" fill="url(#fine)" />
+  <rect width="100%" height="100%" fill="url(#major)" />
+  <g fill="none" stroke="#f3f3f5" stroke-width="1" stroke-opacity="0.08">
+    <circle cx="1180" cy="140" r="220" />
+    <circle cx="1180" cy="140" r="140" />
+    <circle cx="1180" cy="140" r="60" />
+    <path d="M 0 720 L 520 320" />
+    <path d="M 80 900 L 80 620 L 360 620" />
+    <rect x="1040" y="620" width="280" height="200" rx="4" />
+    <path d="M 1320 0 L 1320 260 L 1080 260" />
+  </g>
+</svg>

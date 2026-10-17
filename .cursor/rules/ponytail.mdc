@@ -1,0 +1,45 @@
+---
+description: Portfolio UI fidelity — match reference design, feature modules, AsriUI usage
+globs: src/**/*.{tsx,ts,css}
+alwaysApply: true
+---
+
+# Ponytail — portfolio conventions
+
+## Design source of truth
+
+1. Visual reference: `design/reference/portfolio-ui-reference.jpg` — agent guide: `design/reference/AGENT-UI.md`.
+2. Written spec: root `design.md`.
+3. Styles: `src/shared/styles/portfolio.css` (imported from `layout.tsx`) + `src/app/globals.css` (Tailwind only; do not duplicate tokens elsewhere).
+
+When changing UI, update **tokens in `portfolio.css` first**, then components. Prefer matching the reference over inventing new patterns.
+
+## Architecture
+
+- **Feature modules**: `src/features/<name>/` with `components/`, `data/`, `index.ts`.
+- **Shared**: `src/shared/config/site.ts` (copy), `src/shared/components/` (RefSection, ref buttons, icons).
+- **App shell**: `src/app/page.tsx` composes sections only — no business logic in the page.
+
+## Component rules
+
+- **Layout**: Use `RefSection` for numbered blocks `01`–`08`. Hero and footer are special but use the same rail/grid system.
+- **Buttons**: Use `ref-btn` / `RefButtonPrimary` / `RefButtonSecondary`. Primary = solid black pill; secondary = white + border. Append `→` on primary CTAs where the reference shows arrows.
+- **AsriUI**: **Providers**, **Toast**, **Form** (contact), and typography primitives via `portfolio-typography.tsx` / `Badge` / `Quote`. Primary chrome stays custom CSS (`btn`, cards, carousels)—not AsriUI Card/Button styling.
+- **Typography**: Inter Tight (body/UI), Caveat (hero handwritten annotations only).
+- **Theme**: Default **system** (`color-scheme` + `portfolio-color-scheme` in localStorage). Dark uses elevated section cards; tech/companies strips keep white tiles.
+
+## Content
+
+- Edit copy in `src/shared/config/site.ts` and `src/features/*/data/*.ts`.
+- Do not hardcode user strings inside presentational components except labels tied to structure.
+
+## PWA
+
+- Production build: `npm run build` (webpack + service worker).
+- Manifest: `src/app/manifest.ts`. Offline: `src/app/offline/page.tsx`.
+
+## Quality bar
+
+- Section order (home): Hero → About quote → 01 Tech → 03 Journey → 02 Companies → 04 Projects → 05 Content (IG/YT/Medium) → 06 OSS → 07 Mentorship → Testimonials → 08 Contact.
+- Keep spacing, borders, and pill tags consistent with `portfolio.css`.
+- Run `npm run build` before considering UI tasks done.
