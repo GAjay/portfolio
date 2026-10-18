@@ -5,9 +5,9 @@ import { IconNorthEast } from "@/shared/components/portfolio-icons";
 import { RippleAnchor } from "@/shared/components/ripple";
 import { useAutoplayCarousel } from "@/shared/hooks/use-autoplay-carousel";
 import { PortfolioBody, PortfolioH3 } from "@/shared/components/portfolio-typography";
-import { siteConfig } from "@/shared/config/site";
+import { withBasePath } from "@/shared/config/base-path";
 import type { Project } from "../data/projects";
-import { ProjectPreview } from "./project-preview";
+import { ProjectScreenshot } from "./project-screenshot";
 
 const VISIBLE_SLOTS = 2;
 
@@ -16,17 +16,13 @@ type ProjectsCarouselProps = {
 };
 
 function ProjectCard({ project }: { project: Project }) {
-  const external =
-    project.href.startsWith("http") && !project.href.startsWith("#");
-  const href = external ? project.href : siteConfig.github.url;
+  const href = withBasePath(`/projects/${project.caseStudySlug}`);
 
   return (
     <RippleAnchor
       className="card proj proj-carousel__card"
       href={href}
       hoverRipple
-      target={external ? "_blank" : undefined}
-      rel={external ? "noopener noreferrer" : undefined}
     >
       <div className="proj__thumb">
         <div className="proj__cats" aria-hidden>
@@ -36,7 +32,11 @@ function ProjectCard({ project }: { project: Project }) {
             </span>
           ))}
         </div>
-        <ProjectPreview variant={project.preview} />
+        <ProjectScreenshot
+          slug={project.caseStudySlug}
+          name={project.name}
+          variant={project.preview}
+        />
       </div>
       <div className="b">
         <PortfolioH3>{project.name}</PortfolioH3>

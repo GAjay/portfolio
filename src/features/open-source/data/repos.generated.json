@@ -44,6 +44,28 @@
     "topics": []
   },
   {
+    "id": "js-formatter",
+    "name": "js-formatter",
+    "description": "Json Formatter",
+    "language": "TypeScript",
+    "stars": "1",
+    "forks": "0",
+    "href": "https://github.com/GAjay/js-formatter",
+    "homepage": "https://stackblitz.com/edit/vitejs-vite-axngajkv",
+    "topics": []
+  },
+  {
+    "id": "portfolio",
+    "name": "portfolio",
+    "description": "my portfolio",
+    "language": "TypeScript",
+    "stars": "1",
+    "forks": "0",
+    "href": "https://github.com/GAjay/portfolio",
+    "homepage": "https://gajay.github.io/portfolio/",
+    "topics": []
+  },
+  {
     "id": "asriui",
     "name": "asriui",
     "description": "AsriUI — A modern React UI component library with accessible, typed, customizable, and production-ready components for building scalable web applications.",
@@ -68,28 +90,6 @@
     "forks": "1",
     "href": "https://github.com/GAjay/callApp",
     "homepage": "",
-    "topics": []
-  },
-  {
-    "id": "portfolio",
-    "name": "portfolio",
-    "description": "my portfolio",
-    "language": "TypeScript",
-    "stars": "0",
-    "forks": "0",
-    "href": "https://github.com/GAjay/portfolio",
-    "homepage": "",
-    "topics": []
-  },
-  {
-    "id": "js-formatter",
-    "name": "js-formatter",
-    "description": "Json Formatter",
-    "language": "TypeScript",
-    "stars": "0",
-    "forks": "0",
-    "href": "https://github.com/GAjay/js-formatter",
-    "homepage": "https://stackblitz.com/edit/vitejs-vite-axngajkv",
     "topics": []
   }
 ]
