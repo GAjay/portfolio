@@ -22,9 +22,12 @@ export function ProjectCaseStudyPageContent({
   study,
 }: ProjectCaseStudyPageContentProps) {
   return (
-    <div className="portfolio-page">
+    <div className="portfolio-page portfolio-page--sheet-detail">
       <SiteHeader />
-      <div className="wrap">
+      <div className="sheet-detail-scaffold">
+        <div className="bottom-sheet bottom-sheet--detail">
+          <div className="bottom-sheet__handle" aria-hidden />
+          <div className="bottom-sheet__scroll">
         <main id="main-content" className="projects-page project-detail" tabIndex={-1}>
           <header className="projects-page__hero project-detail__hero">
             <Link href="/projects" className="projects-page__back">
@@ -105,12 +108,14 @@ export function ProjectCaseStudyPageContent({
           </section>
         </main>
 
-        <footer className="projects-page__footer">
+        <footer className="projects-page__footer projects-page__footer--in-sheet">
           <SiteFooterNav />
           <Link href="/projects" className="projects-page__github">
             More projects
           </Link>
         </footer>
+          </div>
+        </div>
       </div>
     </div>
   );

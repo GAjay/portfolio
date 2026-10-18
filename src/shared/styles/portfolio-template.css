@@ -16,6 +16,14 @@
   color-scheme: light;
 }
 
+body {
+  font: 400 15px/1.5 var(--f);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: var(--ink);
+  background: var(--bg);
+}
+
 html[data-theme="dark"] {
   --bg: #0b0b0e;
   --card: #141418;
@@ -78,7 +86,8 @@ html[data-theme="dark"] {
 .wrap {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 0 28px;
+  padding-left: max(28px, env(safe-area-inset-left, 0px));
+  padding-right: max(28px, env(safe-area-inset-right, 0px));
 }
 
 svg.i {
@@ -104,6 +113,7 @@ svg.i {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  min-height: 44px;
   padding: 13px 22px;
   border-radius: 12px;
   font-weight: 600;
@@ -113,6 +123,8 @@ svg.i {
   color: #fff;
   cursor: pointer;
   font-family: inherit;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btn.o {
@@ -153,7 +165,8 @@ svg.i {
   gap: 12px 16px;
   max-width: 1120px;
   margin: 0 auto;
-  padding: 22px 28px;
+  padding: max(14px, env(safe-area-inset-top, 0px)) max(28px, env(safe-area-inset-right, 0px)) 14px
+    max(28px, env(safe-area-inset-left, 0px));
   box-sizing: border-box;
 }
 
@@ -274,6 +287,10 @@ svg.i {
   position: relative;
   z-index: 1;
   padding: 8px 12px;
+  min-height: 36px;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
   border-radius: 99px;
   font-size: 12.5px;
   color: var(--muted);
@@ -282,6 +299,8 @@ svg.i {
   text-decoration: none;
   flex-shrink: 0;
   background: transparent;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   transition:
     color 0.28s ease,
     opacity 0.2s ease;
@@ -1992,11 +2011,127 @@ html[data-theme="dark"] .company-logo--mono {
 
 @media (max-width: 680px) {
   .wrap {
-    padding: 0 20px;
+    padding-left: max(20px, env(safe-area-inset-left, 0px));
+    padding-right: max(20px, env(safe-area-inset-right, 0px));
+  }
+
+  .nav__inner {
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "logo actions";
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+
+  .nav .pill {
+    display: none;
+  }
+
+  .logo {
+    grid-area: logo;
+    min-height: 44px;
+  }
+
+  .nav .right {
+    grid-area: actions;
+    justify-self: end;
+  }
+
+  .logo .logo__text {
+    display: none;
+  }
+
+  .portfolio-main {
+    overflow-x: clip;
+  }
+
+  .hero {
+    padding: 16px 0 4px;
+    gap: 20px;
+  }
+
+  .hero h1 {
+    font-size: clamp(30px, 8.2vw, 40px);
+    margin: 14px 0 12px;
+  }
+
+  .hero p.l {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .cta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .vis {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    grid-template-rows: auto auto;
+    gap: 10px 12px;
+    height: auto;
+    min-height: 0;
+    max-width: 100%;
+    margin-top: 4px;
+  }
+
+  .vis .hero-photo {
+    position: relative;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    max-width: 280px;
+    margin-inline: auto;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    max-height: 320px;
+  }
+
+  .vis .code,
+  .vis .hero-code {
+    position: relative;
+    grid-column: 1;
+    grid-row: 1;
+    top: auto;
+    left: auto;
+    transform: none;
+    align-self: end;
+    max-width: 100%;
+    min-height: 0;
+    font-size: 10px;
+    line-height: 1.55;
+    padding: 10px 12px;
+  }
+
+  .vis .reach {
+    position: relative;
+    grid-column: 2;
+    grid-row: 1;
+    top: auto;
+    right: auto;
+    width: 100%;
+    max-width: 168px;
+    justify-self: end;
+    align-self: end;
+  }
+
+  .vis .hand {
+    display: none;
   }
 
   .stats {
     grid-template-columns: 1fr 1fr;
+    margin-top: 8px;
   }
 
   .g3 {
@@ -2046,6 +2181,24 @@ html[data-theme="dark"] .company-logo--mono {
     flex: 0 0 calc((100% - 10px) / 2);
     min-width: 0;
     max-width: none;
+  }
+
+  /* Loaded after portfolio.css — must live here so it wins over .site-footer-nav { display: flex } */
+  .site-footer-nav {
+    display: none;
+  }
+
+  .site-footer__inner {
+    gap: 0;
+  }
+
+  .projects-page__footer .site-footer-nav,
+  .blog-page__footer .site-footer-nav {
+    display: none;
+  }
+
+  .contact-footer .site-footer {
+    display: none;
   }
 }
 

@@ -3,20 +3,13 @@
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { NavLink, NavSectionId } from "@/shared/config/site";
-import { navLinks } from "@/shared/config/site";
-import {
-  NAV_SCROLL_SECTIONS,
-  navIdForDomSectionId,
-} from "@/shared/lib/nav-scroll-sections";
+import { navIdFromHash } from "@/shared/lib/nav-hash";
+import { NAV_SCROLL_SECTIONS } from "@/shared/lib/nav-scroll-sections";
 import {
   domIdForNavSection,
   scrollTopForSectionId,
   SECTION_SCROLL_OFFSET,
 } from "@/shared/lib/scroll-section";
-
-const sectionIds = navLinks
-  .filter((link): link is NavLink & { id: NavSectionId } => !link.href)
-  .map((link) => link.id);
 
 function sectionDocumentTop(el: HTMLElement): number {
   return el.getBoundingClientRect().top + window.scrollY;
@@ -35,13 +28,6 @@ function activeSectionFromScroll(): NavSectionId {
   }
 
   return active;
-}
-
-function hashToNavId(hash: string): NavSectionId | null {
-  const id = hash.replace("#", "");
-  if (!id) return "home";
-  if (sectionIds.includes(id as NavSectionId)) return id as NavSectionId;
-  return navIdForDomSectionId(id);
 }
 
 const NAV_PILL_ANIM_MS = 560;
@@ -83,7 +69,7 @@ export function useNavActive() {
       return Math.abs(window.scrollY - top) <= 10;
     };
 
-    const fromHash = hashToNavId(window.location.hash);
+    const fromHash = navIdFromHash(window.location.hash);
     if (fromHash) setActiveSection(fromHash);
     else syncFromScroll();
 
@@ -112,7 +98,7 @@ export function useNavActive() {
         setActiveSection(navScrollTargetRef.current);
         return;
       }
-      const fromHash = hashToNavId(window.location.hash);
+      const fromHash = navIdFromHash(window.location.hash);
       if (fromHash) setActiveSection(fromHash);
       else syncFromScroll();
     };
@@ -132,6 +118,9 @@ export function useNavActive() {
 
   const isActive = (link: NavLink) => {
     if (link.href === "/blog") return pathname === "/blog";
+    if (link.id === "projects") {
+      return pathname === "/projects" || pathname.startsWith("/projects/");
+    }
     if (pathname !== "/") return false;
     return link.id === activeSection;
   };
