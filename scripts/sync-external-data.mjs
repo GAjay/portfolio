@@ -823,9 +823,23 @@ async function main() {
     join(contentDir, "content.generated.json"),
     JSON.stringify(contentGenerated, null, 2),
   );
+  const journeyRefreshedAt = new Date().toISOString();
   writeFileSync(
     join(journeyDir, "journey.generated.json"),
     JSON.stringify(journeySeed, null, 2),
+  );
+  writeFileSync(
+    join(journeyDir, "journey.sync-meta.json"),
+    JSON.stringify(
+      {
+        refreshedAt: journeyRefreshedAt,
+        source: "src/features/journey/data/journey.seed.json",
+        roleCount: journeySeed.length,
+        monthlyRefresh: process.env.SYNC_JOURNEY_MONTHLY === "1",
+      },
+      null,
+      2,
+    ),
   );
   writeFileSync(
     join(recommendationsDir, "recommendations.generated.json"),

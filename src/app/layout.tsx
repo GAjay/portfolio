@@ -1,6 +1,8 @@
 import type { Viewport } from "next";
 import { Caveat, Inter_Tight } from "next/font/google";
 import { Providers } from "@/shared/components/providers";
+import { AppSplash } from "@/shared/components/app-splash";
+import { MobileBottomNav, SectionHashSync } from "@/features/navigation";
 import { ScrollToTop } from "@/shared/components/scroll-to-top";
 import { SkipLink } from "@/shared/components/skip-link";
 import { SiteJsonLd } from "@/shared/components/site-json-ld";
@@ -33,6 +35,7 @@ export const metadata = buildRootMetadata();
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#fbfbfc" },
     { media: "(prefers-color-scheme: dark)", color: "#0b0b0e" },
@@ -56,7 +59,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <PortfolioIconSprite />
         <SkipLink />
         <Providers>
+          <AppSplash />
+          <SectionHashSync />
           {children}
+          <MobileBottomNav />
           <ScrollToTop />
         </Providers>
       </body>

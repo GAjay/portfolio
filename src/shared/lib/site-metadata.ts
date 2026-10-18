@@ -65,7 +65,16 @@ export function buildRootMetadata(): Metadata {
     appleWebApp: {
       capable: true,
       statusBarStyle: "default",
-      title: siteConfig.name,
+      title: siteConfig.initials,
+    },
+    icons: {
+      icon: [
+        { url: assetPath("/icons/icon.svg"), type: "image/svg+xml" },
+        { url: assetPath("/favicon.ico"), sizes: "32x32" },
+        { url: assetPath("/icons/icon-192.png"), sizes: "192x192", type: "image/png" },
+        { url: assetPath("/icons/icon-512.png"), sizes: "512x512", type: "image/png" },
+      ],
+      apple: [{ url: assetPath("/icons/apple-touch-icon.png"), sizes: "180x180" }],
     },
   };
 }

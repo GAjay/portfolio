@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="AK">
+  <rect width="512" height="512" fill="#0e0e11"/>
+  <text
+    x="256"
+    y="300"
+    text-anchor="middle"
+    font-family="Inter, 'Inter Tight', system-ui, -apple-system, sans-serif"
+    font-weight="700"
+    font-size="160"
+    letter-spacing="-6"
+    fill="#fbfbfc"
+  >AK</text>
+</svg>

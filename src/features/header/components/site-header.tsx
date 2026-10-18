@@ -1,7 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { NavPill } from "./nav-pill";
+import { MobileNavDrawer } from "@/features/navigation/components/mobile-nav-drawer";
+import { MobileNavMenuButton } from "@/features/navigation/components/mobile-nav-menu-button";
 import { ThemeToggle } from "@/features/navigation/components/theme-toggle";
 import { IconArrow } from "@/shared/components/portfolio-icons";
 import { RippleAnchor } from "@/shared/components/ripple";
@@ -23,6 +26,7 @@ const navSectionDomId: Record<NavSectionId, string> = {
 const currentJob = journeyEntries[0];
 
 export function SiteHeader() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const {
     isActive,
     pathname,
@@ -71,6 +75,7 @@ export function SiteHeader() {
       />
 
       <div className="right">
+        <MobileNavMenuButton open={menuOpen} onClick={() => setMenuOpen((v) => !v)} />
         <ThemeToggle />
         <RippleAnchor
           className="btn s nav-cta"
@@ -84,6 +89,13 @@ export function SiteHeader() {
         </RippleAnchor>
       </div>
       </div>
+      <MobileNavDrawer
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        pathname={pathname}
+        isActive={isActive}
+        onSectionClick={onSectionNavClick}
+      />
     </header>
   );
 }

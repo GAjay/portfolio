@@ -10,13 +10,13 @@ export default function manifest(): MetadataRoute.Manifest {
 
   return {
     name: `${siteConfig.name} — Portfolio`,
-    short_name: siteConfig.name,
+    short_name: siteConfig.initials,
     description: siteConfig.seo.description,
     start_url: start,
     display: "standalone",
     background_color: "#fbfbfc",
     theme_color: "#fbfbfc",
-    orientation: "portrait-primary",
+    orientation: "any",
     icons: [
       {
         src: assetPath("/icons/icon-192.png"),

@@ -1,0 +1,88 @@
+# Sync live portfolio data (GitHub repos, Medium, YouTube, Instagram, Topmate)
+# and refresh journey / recommendations from seed. Commits trigger Pages deploy.
+name: Sync portfolio data
+
+on:
+  schedule:
+    # Daily ~11:00 IST — feeds, GitHub OSS/projects, metrics
+    - cron: "30 5 * * *"
+    # 1st of month 16:30 UTC (~22:00 IST) — re-apply journey.seed.json after month-end edits
+    - cron: "30 16 1 * *"
+    # Sundays 06:30 UTC — refresh live project screenshots
+    - cron: "30 6 * * 0"
+  workflow_dispatch:
+    inputs:
+      crawl_instagram:
+        description: Crawl Instagram with Playwright (slower)
+        type: boolean
+        default: true
+      capture_screenshots:
+        description: Capture project live screenshots
+        type: boolean
+        default: false
+      monthly_journey:
+        description: Mark journey refresh as monthly (SYNC_JOURNEY_MONTHLY)
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-portfolio-data
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium --with-deps
+
+      - name: Sync external data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          SYNC_JOURNEY_MONTHLY: ${{ github.event.schedule == '30 16 1 * *' && '1' || (github.event_name == 'workflow_dispatch' && inputs.monthly_journey && '1') || '' }}
+          INSTAGRAM_SKIP_CRAWL: ${{ github.event_name == 'workflow_dispatch' && !inputs.crawl_instagram && '1' || '' }}
+        run: npm run sync:all
+
+      - name: Capture project screenshots
+        if: >-
+          github.event.schedule == '30 6 * * 0' ||
+          (github.event_name == 'workflow_dispatch' && inputs.capture_screenshots == true)
+        run: npm run sync:project-screenshots
+
+      - name: Commit and push synced data
+        run: |
+          git config user.name "GAjay"
+          git config user.email "ajay.maheshwari095@gmail.com"
+          chmod +x scripts/git-add-synced-data.sh
+          ./scripts/git-add-synced-data.sh
+          if git diff --staged --quiet; then
+            echo "No data changes to commit."
+            exit 0
+          fi
+          SCHEDULE="${{ github.event.schedule }}"
+          if [ "$SCHEDULE" = "30 16 1 * *" ]; then
+            MSG="chore(data): monthly journey and portfolio sync"
+          elif [ "$SCHEDULE" = "30 6 * * 0" ]; then
+            MSG="chore(data): sync feeds and project screenshots"
+          else
+            MSG="chore(data): sync GitHub, content feeds, and metrics"
+          fi
+          git commit -m "$MSG"
+          git push

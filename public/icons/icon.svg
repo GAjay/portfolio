@@ -1,10 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Portfolio">
-  <defs>
-    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#6366f1"/>
-      <stop offset="100%" stop-color="#0ea5e9"/>
-    </linearGradient>
-  </defs>
-  <rect width="512" height="512" rx="112" fill="url(#g)"/>
-  <path fill="#fff" d="M148 332V180h52v152h-52zm116 0V180h52l72 96V180h52v152h-52l-72-96v96h-52z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="AK">
+  <rect width="512" height="512" rx="112" fill="#0e0e11"/>
+  <text
+    x="256"
+    y="318"
+    text-anchor="middle"
+    font-family="Inter, 'Inter Tight', system-ui, -apple-system, sans-serif"
+    font-weight="700"
+    font-size="196"
+    letter-spacing="-8"
+    fill="#fbfbfc"
+  >AK</text>
 </svg>
