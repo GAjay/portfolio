@@ -2,6 +2,7 @@
 export const basePath =
   process.env.NEXT_PUBLIC_BASE_PATH?.replace(/\/$/, "") ?? "";
 
+/** Plain `<a>`, `navHref`, assets — not `next/link` `href` (Next.js prepends `basePath` again). */
 export function withBasePath(href: string): string {
   if (!basePath || href.startsWith("http")) return href;
   if (href.startsWith("/#")) return `${basePath}${href}`;

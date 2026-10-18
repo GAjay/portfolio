@@ -9,7 +9,6 @@ import { navigateToSection } from "@/shared/lib/navigate-to-section";
 import { IconArrow } from "@/shared/components/portfolio-icons";
 import { RippleAnchor } from "@/shared/components/ripple";
 import type { NavLink, NavSectionId } from "@/shared/config/site";
-import { withBasePath } from "@/shared/config/base-path";
 import { navHref, navLinks, resumeHref, siteConfig } from "@/shared/config/site";
 
 type MobileNavDrawerProps = {
@@ -114,7 +113,7 @@ export function MobileNavDrawer({
                 return (
                   <li key={item.id}>
                     <Link
-                      href={withBasePath("/blog")}
+                      href="/blog"
                       className={`mobile-drawer__link${active ? " mobile-drawer__link--active" : ""}`}
                       aria-current={active ? "page" : undefined}
                       onClick={onClose}

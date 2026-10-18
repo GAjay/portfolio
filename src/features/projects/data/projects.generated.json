@@ -33,6 +33,17 @@
     "topics": []
   },
   {
+    "id": "portfolio",
+    "name": "portfolio",
+    "description": "my portfolio",
+    "language": "TypeScript",
+    "stars": "1",
+    "forks": "0",
+    "href": "https://github.com/GAjay/portfolio",
+    "homepage": "https://gajay.github.io/portfolio/",
+    "topics": []
+  },
+  {
     "id": "daily-dsa-javascript",
     "name": "daily-dsa-javascript",
     "description": "Daily DSA practice in JavaScript with automation",
@@ -52,17 +63,6 @@
     "forks": "0",
     "href": "https://github.com/GAjay/js-formatter",
     "homepage": "https://stackblitz.com/edit/vitejs-vite-axngajkv",
-    "topics": []
-  },
-  {
-    "id": "portfolio",
-    "name": "portfolio",
-    "description": "my portfolio",
-    "language": "TypeScript",
-    "stars": "1",
-    "forks": "0",
-    "href": "https://github.com/GAjay/portfolio",
-    "homepage": "https://gajay.github.io/portfolio/",
     "topics": []
   }
 ]

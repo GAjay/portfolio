@@ -5,7 +5,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useNavActive } from "@/features/header/hooks/use-nav-active";
 import type { NavSectionId } from "@/shared/config/site";
-import { withBasePath } from "@/shared/config/base-path";
 import { navigateToSection } from "@/shared/lib/navigate-to-section";
 import { domIdForNavSection } from "@/shared/lib/scroll-section";
 import {
@@ -162,11 +161,11 @@ export function MobileBottomNav() {
       pendingNavId,
     );
 
-    let href = withBasePath("/");
+    let href = "/";
     if (tab.id === "blog") {
-      href = withBasePath("/blog");
+      href = "/blog";
     } else if (tab.id === "projects") {
-      href = withBasePath("/projects");
+      href = "/projects";
     } else {
       href = sectionHref(domIdForNavSection(tab.id));
     }
