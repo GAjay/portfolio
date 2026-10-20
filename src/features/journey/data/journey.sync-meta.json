@@ -1,6 +1,6 @@
 {
-  "refreshedAt": "2026-10-20T10:16:10.566Z",
+  "refreshedAt": "2026-10-20T15:11:18.364Z",
   "source": "src/features/journey/data/journey.seed.json",
   "roleCount": 4,
-  "monthlyRefresh": false
+  "monthlyRefresh": true
 }
