@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-10-21T10:25:33.679Z",
+  "syncedAt": "2026-10-22T10:23:22.873Z",
   "channels": [
     {
       "id": "youtube",
@@ -103,7 +103,7 @@
       "id": "medium",
       "name": "Medium",
       "handle": "theplainscript",
-      "stat": "30 followers · 10 articles",
+      "stat": "31 followers · 10 articles",
       "viewAll": "https://theplainscript.medium.com/",
       "items": [
         {
@@ -126,10 +126,10 @@
   ],
   "metrics": {
     "youtubeSubscribers": 6,
-    "mediumFollowers": 30,
+    "mediumFollowers": 31,
     "mediumArticleCount": 10,
     "instagramFollowers": 170,
-    "audienceReach": 206,
-    "audienceReachLabel": "206+"
+    "audienceReach": 207,
+    "audienceReachLabel": "207+"
   }
 }
